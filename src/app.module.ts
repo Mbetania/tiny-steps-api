@@ -3,8 +3,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { config } from 'process';
 import { MongoDBModule } from './infrastructure/config/mongodb';
+import { JWTModule } from './infrastructure/config/jwt';
 
 @Module({
   imports: [
@@ -20,6 +20,7 @@ import { MongoDBModule } from './infrastructure/config/mongodb';
       ],
     }),
     MongoDBModule,
+    JWTModule,
   ],
   controllers: [AppController],
   providers: [AppService],
