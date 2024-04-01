@@ -1,12 +1,19 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { IMongoDBEntity } from './entity.base';
+import { IMongoDBEntity } from '../entity.base';
 import { Exclude } from 'class-transformer';
 import { Document } from 'mongoose';
 
 export interface IUser extends IMongoDBEntity {
-  username: string;
   email: string;
   password: string;
+  username: string;
+  status: EUserStatus;
+}
+
+export enum EUserStatus {
+  ACTIVE = 'active',
+  DELETED = 'deleted',
+  BLOCKED = 'blocked',
 }
 
 @Schema({ versionKey: false, timestamps: true })
@@ -30,6 +37,14 @@ export class User extends Document implements IUser {
   })
   @Exclude()
   password: string;
+
+  @Prop({
+    type: String,
+    enum: EUserStatus,
+    default: EUserStatus.ACTIVE,
+    required: true,
+  })
+  status: EUserStatus;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -2,13 +2,20 @@ import { ThrottlerModule } from '@nestjs/throttler';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { MongoDBModule } from './infrastructure/config/mongodb';
-import { JWTModule } from './infrastructure/config/jwt';
+import {
+  AuthModule,
+  BcryptModule,
+  JWTModule,
+  MongoDBModule,
+} from './infrastructure';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      cache: true,
+      expandVariables: true,
+    }),
     ThrottlerModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -19,10 +26,12 @@ import { JWTModule } from './infrastructure/config/jwt';
         },
       ],
     }),
+
     MongoDBModule,
     JWTModule,
+    AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [],
 })
 export class AppModule {}

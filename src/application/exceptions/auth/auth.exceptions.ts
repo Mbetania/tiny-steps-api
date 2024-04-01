@@ -10,3 +10,21 @@ export class UserAlreadyExists extends GenericHttpException {
     );
   }
 }
+
+export class InvalidCredentials extends GenericHttpException {
+  constructor() {
+    super('Invalid credentials', HttpStatus.BAD_REQUEST, 'INVALID_CREDENTIALS');
+  }
+}
+
+export class UserNotFound extends GenericHttpException {
+  constructor() {
+    super('User not found.', HttpStatus.NOT_FOUND, 'USER_NOT_FOUND');
+  }
+}
+
+export class InvalidToken extends GenericHttpException {
+  constructor() {
+    super('Invalid token', HttpStatus.UNAUTHORIZED, 'INVALID_TOKEN');
+  }
+}

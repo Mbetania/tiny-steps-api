@@ -22,10 +22,13 @@ async function bootstrap() {
 
   const NODE_PORT = configService.get<string>('NODE_PORT');
   const NODE_ENV = configService.get<string>('NODE_ENV');
+  const MONGODB_URI = configService.get('MONGODB_URI');
+  const MONGODB_NAME = configService.get('MONGODB_NAME');
 
   await app.listen(NODE_PORT, () => {
     Logger.log(`Server in environment: [${NODE_ENV}]`);
     Logger.log(`API listening on port: [${NODE_PORT}]`);
+    Logger.log(`DB name: [${MONGODB_NAME}]`);
   });
 }
 bootstrap();

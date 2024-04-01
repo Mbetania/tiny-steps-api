@@ -30,7 +30,7 @@ export class SignInDTO {
   password: string;
 }
 
-export class TokenParloadDTO {
+export class TokenPayloadDTO {
   _id: string;
   iat?: number;
   exp?: number;
