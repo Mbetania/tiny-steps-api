@@ -14,6 +14,23 @@
 - **Install MongoDB Compass [here](https://www.mongodb.com/es/products/tools/compass)**
 - **Install Docker and Docker-compose**
 
+## Set environment variables
+
+Copy the `.env.example` file and replace values for local environment
+
+```bash
+cp .env.example .env
+```
+
+## Up docker-compose
+
+In local development we need to up docker-compose **local**.
+The docker-compose has `mongodb` image.
+
+```bash
+docker-compose -f ./local-docker-compose.yml up -d
+```
+
 ## Installation
 
 ```bash
