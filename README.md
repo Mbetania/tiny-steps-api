@@ -1,4 +1,4 @@
-# Toronto API
+# Tiny Steps API
 
 ## Technology stack
 
