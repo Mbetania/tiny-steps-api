@@ -1,4 +1,4 @@
-# Tiny Steps API
+# Toronto API
 
 ## Technology stack
 
@@ -17,6 +17,7 @@
 ## Set environment variables
 
 Copy the `.env.example` file and replace values for local environment
+<<<<<<< HEAD
 
 ```bash
 cp .env.example .env
@@ -32,47 +33,39 @@ docker-compose -f ./local-docker-compose.yml up -d
 ```
 
 ## Installation
+=======
+>>>>>>> 5648539a95b2367a4cafc6c901ce3136c8f810e9
 
 ```bash
-$ pnpm install
+cp .env.example .env
+```
+
+## Up docker-compose
+
+In local development we need to up docker-compose **local**.
+The docker-compose has `mongodb` image.
+
+```bash
+docker-compose -f ./local-docker-compose.yml up -d
+```
+
+## Install dependencies
+
+```bash
+$ npm install
 ```
 
 ## Running the app
 
 ```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
+# Development mode
+$ npm run start:dev
 
 # production mode
-$ pnpm run start:prod
+$ npm run start:prod
 ```
 
-## Test
+## Using MongoDB Compass
 
-```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+In MongoDB Compass connect to `localhost:27017`
+After running the app, you should see the Toronto collection available
