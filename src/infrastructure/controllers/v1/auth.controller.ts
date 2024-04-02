@@ -1,12 +1,15 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  HttpCode,
   HttpStatus,
   Post,
   Request,
   UseGuards,
 } from '@nestjs/common';
+import { ApiOkResponse } from '@nestjs/swagger';
 import {
   DefaultApiResponse,
   SignInPresentation,
@@ -46,5 +49,16 @@ export class AuthControllerV1 {
   @UseGuards(JwtAuthGuard)
   async check(): Promise<DefaultApiResponse<any>> {
     return { message: 'User logged', status: HttpStatus.OK };
+  }
+
+  @Delete('sign-out')
+  @HttpCode(HttpStatus.OK)
+  @UseGuards(JwtAuthGuard)
+  @ApiOkResponse({
+    description: 'Ok request',
+    type: DefaultApiResponse,
+  })
+  async signout(@Request() req): Promise<DefaultApiResponse<any>> {
+    return { message: 'User signout successfully', status: HttpStatus.OK };
   }
 }
