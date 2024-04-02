@@ -17,7 +17,6 @@
 ## Set environment variables
 
 Copy the `.env.example` file and replace values for local environment
-<<<<<<< HEAD
 
 ```bash
 cp .env.example .env
@@ -33,8 +32,6 @@ docker-compose -f ./local-docker-compose.yml up -d
 ```
 
 ## Installation
-=======
->>>>>>> 5648539a95b2367a4cafc6c901ce3136c8f810e9
 
 ```bash
 cp .env.example .env
