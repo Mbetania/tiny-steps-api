@@ -8,8 +8,8 @@ export interface IUserRepository extends IRepository<IUser> {}
 
 export class UserRepository extends Repository<User> {
   constructor(
-    @InjectModel(Entity.User) private readonly userrModel: Model<User>,
+    @InjectModel(Entity.User) private readonly userModel: Model<User>,
   ) {
-    super(userrModel);
+    super(userModel);
   }
 }

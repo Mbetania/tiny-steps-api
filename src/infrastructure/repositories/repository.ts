@@ -28,6 +28,7 @@ export abstract class Repository<T> implements IRepository<T> {
   }
 
   async findAll(filter?: FilterQuery<T>): Promise<T[]> {
+    if (!Boolean(filter)) return await this.model.find();
     const query = this.model.find(filter.query);
 
     if (Boolean(filter.populate)) query.populate(filter.populate);

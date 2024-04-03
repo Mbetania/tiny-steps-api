@@ -11,13 +11,9 @@ async function bootstrap() {
 
   const configService = app.get(ConfigService);
   const httpAdapter = app.get(HttpAdapterHost);
-  const ngrokUrl = configService.get<string>('NGROK_URL');
+
   app.use(helmet());
-  app.enableCors({
-    origin: ngrokUrl,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  });
+  app.enableCors();
 
   app.useGlobalPipes(AppValidationPipe);
   app.useGlobalFilters(new HttpExceptionsFilter(httpAdapter, configService));
@@ -30,7 +26,6 @@ async function bootstrap() {
   await app.listen(NODE_PORT, () => {
     Logger.log(`Server in environment: [${NODE_ENV}]`);
     Logger.log(`API listening on port: [${NODE_PORT}]`);
-    Logger.log(ngrokUrl);
   });
 }
 bootstrap();

@@ -7,6 +7,7 @@ import {
   BcryptModule,
   JWTModule,
   MongoDBModule,
+  UserModule,
 } from './infrastructure';
 
 @Module({
@@ -28,8 +29,10 @@ import {
     }),
 
     MongoDBModule,
+    BcryptModule,
     JWTModule,
     AuthModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [],
