@@ -18,7 +18,6 @@ export class SignupDTO {
     description: 'Email to create user',
     example: 'user@mail.com',
     type: String,
-    required: true,
   })
   @IsString()
   @IsEmail()
@@ -29,7 +28,6 @@ export class SignupDTO {
     description: 'User password',
     example: '#My_Password_1990',
     type: String,
-    required: true,
   })
   @IsNotEmpty()
   @IsString()

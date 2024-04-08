@@ -1,18 +1,16 @@
 import { Inject, Logger } from '@nestjs/common';
-import { Types } from 'mongoose';
 import { SignupDTO } from 'src/application/dtos';
 import { PORT } from 'src/application/enums';
 import { UserAlreadyExists } from 'src/application/exceptions';
-import { IUserProfile } from 'src/application/presentations';
-import { ERole, EUserStatus, IProfile, IUser } from 'src/domain';
-import { IProfileRepository, IUserRepository } from 'src/infrastructure';
+import { ERole, EUserStatus, IAuth } from 'src/domain';
+import { IUserRepository } from 'src/infrastructure';
 import { BcryptService } from 'src/infrastructure/config/bcrypt/bcrypt.service';
 
 export class SignUpV1 {
   private readonly logger = new Logger(SignUpV1.name);
 
   constructor(
-    @Inject(PORT.User) private readonly userRepository: IUserRepository,
+    @Inject(PORT.Auth) private readonly AuthRepository: IUserRepository,
     private readonly bcryptService: BcryptService,
   ) {}
 
@@ -25,15 +23,12 @@ export class SignUpV1 {
     const cryptedPassword = await this.bcryptService.encriptPassword(
       data.password,
     );
-    let profiles: IUser = { profiles: [] };
-    profiles = await this.userRepository.create(profiles);
-    const userData: IUser = {
+
+    const userData: IAuth = {
       ...data,
       email: data.email,
       password: cryptedPassword,
       status: EUserStatus.ACTIVE,
-      profiles: new Types.ObjectId(profiles._id),
-      role: ERole.NOT_ASSIGNED,
     };
 
     const user = await this.userRepository.create(userData);
