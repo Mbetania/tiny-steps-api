@@ -65,4 +65,4 @@ $ npm run start:prod
 ## Using MongoDB Compass
 
 In MongoDB Compass connect to `localhost:27017`
-After running the app, you should see the Toronto collection available
+After running the app, you should see the Tiny Steps collection available
