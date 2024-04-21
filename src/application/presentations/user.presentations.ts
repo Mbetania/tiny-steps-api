@@ -6,7 +6,6 @@ import { Types } from 'mongoose';
 export interface IUserProfile {
   username: string;
   email: string;
-  status: EUserStatus;
   profiles?: Types.ObjectId | [];
   role: ERole;
 }

@@ -19,10 +19,9 @@ export class GetUserProfileV1 {
 
     const userProfile: IUserProfile = {
       username: user.username,
-      email: user.email,
-      status: user.status,
       profiles: user.profiles,
       role: user.role,
+      email: user.email,
     };
     return userProfile;
   }

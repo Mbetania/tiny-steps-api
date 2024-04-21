@@ -24,7 +24,6 @@ export class SignInV1 {
 
     return {
       token: this.jwtService.sign(payload),
-      status: user.status,
     };
   }
 

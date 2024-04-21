@@ -7,6 +7,8 @@ import { Entity } from 'src/application';
 
 export interface IUser extends IMongoDBEntity {
   username: string;
+  password?: string;
+  email?: string;
   profiles?: Types.ObjectId | [];
   role?: ERole;
 }
@@ -28,6 +30,11 @@ export class User extends Document implements IUser {
     default: ERole.NOT_ASSIGNED,
   })
   role: ERole;
+
+  @Prop({
+    type: String,
+  })
+  email: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
